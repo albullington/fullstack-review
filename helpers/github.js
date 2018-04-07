@@ -11,9 +11,13 @@ let getReposByUsername = (username, callback) => {
     }
   };
   request.get(options, function(error, response, body) {
-    //console.log('sending GET request to Git API', response.body);
-    //console.log('parsed', JSON.parse(response.body)[0]);
-    callback(JSON.parse(response.body)[0]);
+    var parsed = JSON.parse(response.body);
+
+    parsed.forEach(function(repo) {
+      callback(repo);
+    })
+    //console.log(JSON.parse(response.body)); //for each loop to grab data
+    //callback(JSON.parse(response.body)[0]);
   })
 }
 

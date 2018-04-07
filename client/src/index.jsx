@@ -13,13 +13,20 @@ class App extends React.Component {
     }
   }
 
+  //component did mount
+
   search (term) {
     console.log(`${term} has changed....`);
+    var app = this;
     axios.post('/repos', {
       data: term,
     })
     .then(function(response) {
-      console.log(response);
+      console.log('this', this);
+      console.log(response.data);
+      app.setState({
+        repos: response.data
+      })
     })
     .catch(function(error) {
       console.log(error);

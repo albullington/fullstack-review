@@ -16,10 +16,7 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-
 let save = (JSONdata) => { 
-  // This function should save a repo or repos to
-  // the MongoDB
   var githubRepo = new Repo({
 		username: JSONdata.owner.login, 
 		repos: {
@@ -32,17 +29,11 @@ let save = (JSONdata) => {
   githubRepo.save()
 }
 
+//console.log('this is my repo in mongoose', promise.collections.repos.collections);
+
+let find = () => {
+	return Repo.find();
+}
+
 module.exports.save = save;
-
-//https://api.github.com/users/octocat/repos check this for example of how repo data comes back
-
-//https://api.github.com/users{/user}/repos
-	// var newRepo = new Repo({
-	// 	id: 122334,
-	// 	username: 'octocat', 
-	// 	repos: {
-	// 		name: 'git-consortium',
-	// 		url: 'https://github.com/octocat/git-consortium', 
-	// 		updatedDate: '2017-12-06T01:15:32Z', 
-	// 	}
-	// });
+module.exports.find = find;
