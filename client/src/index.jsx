@@ -22,7 +22,7 @@ class App extends React.Component {
       data: term,
     })
     .then(function(response) {
-      console.log('this', this);
+      // console.log('this', this);
       console.log(response.data);
       app.setState({
         repos: response.data
